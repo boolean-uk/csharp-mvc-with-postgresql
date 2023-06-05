@@ -50,6 +50,13 @@ namespace exercise.api.Data
             "059C",
             "064G"
         };
+        private static List<string> Location = new List<string>()
+        {
+            "Hogwarts",
+            "Beauxbatons",
+            "Ilvermorny",
+            "Durmstrang"
+        };
 
 
         public static void Seed(this WebApplication app)
@@ -57,7 +64,22 @@ namespace exercise.api.Data
             using (var db = new EmployeeContext())
             {
                 Random employeeRandom = new Random();
+                Random departmentRandom = new Random();
                 var employees = new List<Employee>();
+                var departments = new List<Department>();
+
+                if (!db.Departments.Any())
+                {
+                    for (int x = 1; x < 10; x++)
+                    {
+                        Department department = new Department();
+                        department.Id = x;
+                        department.Name = Department[departmentRandom.Next(Department.Count)];
+                        department.Location = Location[departmentRandom.Next(Location.Count)];
+                        departments.Add(department);
+                    }
+                    db.Departments.AddRange(departments);
+                }
 
                 if (!db.Employees.Any())
                 {
@@ -66,15 +88,16 @@ namespace exercise.api.Data
                         Employee employee = new Employee();
                         employee.Id = x;
                         employee.Name = Names[employeeRandom.Next(Names.Count)];
+                        employee.DepartmentId = departments[departmentRandom.Next(departments.Count)].Id;
                         employee.JobName = $"{FirstWord[employeeRandom.Next(FirstWord.Count)]} {SecondWord[employeeRandom.Next(SecondWord.Count)]}";
-                        employee.Department = Department[employeeRandom.Next(Department.Count)];
                         employee.SalaryGrade =SalaryGrade[employeeRandom.Next(SalaryGrade.Count)];
-
                         employees.Add(employee);
-
                     }
                     db.Employees.AddRange(employees);
                 }
+
+               
+
                 db.SaveChanges();
             }
         }

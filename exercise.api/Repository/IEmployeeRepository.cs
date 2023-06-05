@@ -10,6 +10,11 @@ namespace exercise.api.Repository
         bool UpdateEmployee(Employee employee);
         bool DeleteEmployee(int id);
 
+        IEnumerable<Department> GetAllDepartments();
+        Department GetDepartment(int id);
+        bool AddDepartment(Department department);
+        bool UpdateDepartment(Department department);
+        bool DeleteDepartment(int id);
 
     }
 }

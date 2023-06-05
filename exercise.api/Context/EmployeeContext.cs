@@ -16,7 +16,14 @@ namespace exercise.api.Context
         {
             optionsBuilder.UseNpgsql(GetConnectionString());
         }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Department>()
+           .HasKey(m => new { m.Id });
+
+        }
 
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Department> Departments {get; set; }
     }
 }

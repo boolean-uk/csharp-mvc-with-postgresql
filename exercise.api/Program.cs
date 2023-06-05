@@ -1,6 +1,7 @@
 using exercise.api.Context;
 using exercise.api.Data;
 using exercise.api.DataContext;
+using exercise.api.EndPoint;
 using exercise.api.Repository;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +28,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.ConfigureEmployeeApi();
+
+app.ConfigureDepartmentApi();
 
 app.UseHttpsRedirection();
 
