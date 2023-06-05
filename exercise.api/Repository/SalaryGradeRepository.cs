@@ -1,59 +1,58 @@
 ﻿using exercise.api.DataContext;
 using exercise.api.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace exercise.api.Repository
 {
-    public class EmployeeRepository : IEmployeeRepository
+    public class SalaryGradeRepository : ISalaryGradeRepository
     {
-        public bool AddEmployee(Employee employee)
+        public bool AddSalaryGrade(SalaryGrade salarygrade)
         {
             using (var db = new EmployeeContext())
             {
-                db.Employees.Add(employee);
+                db.SalaryGrades.Add(salarygrade);
                 db.SaveChanges();
                 return true;
             }
             return false;
         }
 
-        public bool DeleteEmployee(int id)
+        public bool DeleteSalaryGrade(int id)
         {
             using (var db = new EmployeeContext())
             {
-                db.Remove(db.Employees.Find(id));
+                db.Remove(db.SalaryGrades.Find(id));
                 db.SaveChanges();
                 return true;
             };
             return false;
         }
 
-        public Employee GetEmployee(int id)
+        public SalaryGrade GetSalaryGrade(int id)
         {
-            Employee result;
+            SalaryGrade result;
             using (var db = new EmployeeContext())
             {
-                result = db.Employees.Find(id);
+                result = db.SalaryGrades.Find(id);
                 db.SaveChanges();
                 return result;
             };
             return result;
         }
 
-        public IEnumerable<Employee> GetEmployees()
+        public IEnumerable<SalaryGrade> GetSalaryGrades()
         {
             using (var db = new EmployeeContext())
             {
-                return db.Employees.Include(e => e.SalaryGrade).Include(e => e.Department).ToList();
+                return db.SalaryGrades.ToList();
             }
             return null;
         }
 
-        public bool UpdateEmployee(Employee employee)
+        public bool UpdateSalaryGrade(SalaryGrade salarygrade)
         {
             using (var db = new EmployeeContext())
             {
-                db.Update(employee);
+                db.Update(salarygrade);
                 db.SaveChanges();
                 return true;
             };

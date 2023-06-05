@@ -8,6 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<ISalaryGradeRepository, SalaryGradeRepository>();
+builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -26,6 +29,8 @@ if (app.Environment.IsDevelopment())
 
 
 app.ConfigureEmployeeApi();
+app.ConfigureSalaryGradeApi();
+app.ConfigureDepartmentApi();
 
 app.UseHttpsRedirection();
 

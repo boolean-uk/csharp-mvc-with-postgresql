@@ -17,5 +17,7 @@ namespace exercise.api.DataContext
             optionsBuilder.UseNpgsql(GetConnectionString());
         }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<SalaryGrade> SalaryGrades { get; set; }
+        public DbSet<Department> Departments { get; set; }
     }
 }
