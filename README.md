@@ -7,7 +7,8 @@ Instructions Fork this repository Clone your fork to your machine Open the proje
 
 # Core Exercise
 
-Look at the OpenAPI schema below, your task is to set up a remote Postgres Database on ElephantSQL and connect to it from your code. Your Swagger should have all CRUD functionality for the Employee Model.
+Look at the OpenAPI schema below, your task is to set up a remote Postgres Database on ElephantSQL and connect to it from your code.
+Your Swagger should have all CRUD functionality for the Employee Model.
 
 The database table for Employees will be something like this:
 
