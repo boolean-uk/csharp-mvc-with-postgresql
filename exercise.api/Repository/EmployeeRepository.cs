@@ -17,6 +17,16 @@ namespace exercise.api.Repository
             return false;
         }
 
+        public Employee GetAEmployee(int id)
+        {
+            Employee result;
+            using (var db = new EmployeeContext())
+            {
+                result = db.Employees.Find(id);
+            }
+            return result;
+        }
+
         public IEnumerable<Employee> GetEmployees()
         {
             using (var db = new EmployeeContext())

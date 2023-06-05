@@ -7,7 +7,7 @@ namespace exercise.api.Repository
     {
        bool AddEmployee(Employee employee);
        IEnumerable<Employee> GetEmployees();
-       // Employee GetEmployee(int id);
+       Employee GetAEmployee(int id);
        // bool UpdateEmployee(Employee employee);
        // bool DeleteEmployee(int id);
 
