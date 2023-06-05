@@ -97,8 +97,8 @@ C:\Boolean\3ApisDataStores\csharp-mvc-with-postgresql\exercise.tests\obj\Debug\n
 C:\Boolean\3ApisDataStores\csharp-mvc-with-postgresql\exercise.tests\obj\Debug\net7.0\exercise.tests.pdb
 C:\Boolean\3ApisDataStores\csharp-mvc-with-postgresql\exercise.tests\obj\Debug\net7.0\exercise.tests.genruntimeconfig.cache
 C:\Boolean\3ApisDataStores\csharp-mvc-with-postgresql\exercise.tests\obj\Debug\net7.0\ref\exercise.tests.dll
-C:\Users\valen\Source\Repos\csharp-mvc-with-postgresql\exercise.tests\bin\Debug\net7.0\testhost.exe
 C:\Users\valen\Source\Repos\csharp-mvc-with-postgresql\exercise.tests\bin\Debug\net7.0\testhost.dll
+C:\Users\valen\Source\Repos\csharp-mvc-with-postgresql\exercise.tests\bin\Debug\net7.0\testhost.exe
 C:\Users\valen\Source\Repos\csharp-mvc-with-postgresql\exercise.tests\bin\Debug\net7.0\NUnit3.TestAdapter.dll
 C:\Users\valen\Source\Repos\csharp-mvc-with-postgresql\exercise.tests\bin\Debug\net7.0\NUnit3.TestAdapter.pdb
 C:\Users\valen\Source\Repos\csharp-mvc-with-postgresql\exercise.tests\bin\Debug\net7.0\nunit.engine.dll

@@ -1,3 +1,5 @@
+using exercise.api.Context;
+using exercise.api.Data;
 using exercise.api.DataContext;
 using exercise.api.Repository;
 
@@ -7,11 +9,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 
-builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddDbContext<EmployeeContext>();
 
 var app = builder.Build();
 
@@ -29,5 +33,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.Seed();
 
 app.Run();

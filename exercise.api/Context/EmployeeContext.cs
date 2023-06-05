@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
 
-namespace exercise.api.Data
+namespace exercise.api.Context
 {
     public class EmployeeContext : DbContext
     {
@@ -17,6 +17,6 @@ namespace exercise.api.Data
             optionsBuilder.UseNpgsql(GetConnectionString());
         }
 
-        public DbSet<Employee> Employees { get; set; } 
+        public DbSet<Employee> Employees { get; set; }
     }
 }
