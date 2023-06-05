@@ -16,5 +16,11 @@ namespace exercise.api.Repository
         bool UpdateDepartment(Department department);
         bool DeleteDepartment(int id);
 
+        IEnumerable<Salary> GetAllSalaries();
+        Salary GetSalary(int id);
+        bool AddSalary(Salary salary);
+        bool UpdateSalary(Salary salary);
+        bool DeleteSalary(int id);
+
     }
 }

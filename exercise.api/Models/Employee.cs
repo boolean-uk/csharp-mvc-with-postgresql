@@ -7,10 +7,13 @@ namespace exercise.api.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string JobName { get; set; }
-        public string SalaryGrade { get; set; }
 
         [ForeignKey("Department")]
         public int DepartmentId { get; set; }
+
+        [ForeignKey("Salary")]
+        public int SalaryId { get; set; }
+        public Salary Salary { get; set; }
 
     }
 }

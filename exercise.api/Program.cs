@@ -31,6 +31,8 @@ app.ConfigureEmployeeApi();
 
 app.ConfigureDepartmentApi();
 
+app.ConfigureSalaryApi();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

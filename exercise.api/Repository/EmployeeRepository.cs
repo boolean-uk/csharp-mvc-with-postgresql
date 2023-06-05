@@ -64,7 +64,7 @@ namespace exercise.api.Repository
         {
             using (var db = new EmployeeContext ())
             {
-                return db.Departments.Include(a=> a.Employees).ToList();
+                return db.Departments.Include(a=> a.Employees).ThenInclude(b => b.Salary).ToList();
             }
             return null;
         }
@@ -109,6 +109,60 @@ namespace exercise.api.Repository
                     db.Departments.Remove(department);
                     db.SaveChanges();
                         return true;
+                }
+            }
+            return false;
+        }
+
+        public IEnumerable<Salary> GetAllSalaries()
+        {
+            using (var db = new EmployeeContext())
+            {
+                return db.Salaries.ToList();
+            }
+            return null;
+        }
+
+        public Salary GetSalary(int id)
+        {
+            Salary result;
+            using (var db = new EmployeeContext ())
+            {
+                return db.Salaries.FirstOrDefault(a=>a.Id == id);
+            }
+        }
+
+        public bool AddSalary(Salary salary)
+        {
+            using (var db = new EmployeeContext())
+            {
+                db.Salaries.Add(salary);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public bool UpdateSalary(Salary salary)
+        {
+            using (var db = new EmployeeContext ())
+            {
+                db.Salaries.Update(salary);
+                db.SaveChanges();
+                return true;
+            }
+        }
+
+        public bool DeleteSalary(int id)
+        {
+            using (var db = new EmployeeContext())
+            {
+                var salary = db.Salaries.FirstOrDefault(a => a.Id == id);
+                if (salary != null)
+                {
+                    db.Salaries.Remove(salary);
+                    db.SaveChanges();
+                    return true;
                 }
             }
             return false;

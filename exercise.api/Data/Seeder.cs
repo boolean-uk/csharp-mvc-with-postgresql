@@ -57,6 +57,20 @@ namespace exercise.api.Data
             "Ilvermorny",
             "Durmstrang"
         };
+        private static List<int> MinSalary = new List<int>()
+        {
+            1987,
+            2050,
+            3030,
+            1659
+        };
+        private static List<int> MaxSalary = new List<int>()
+        {
+            243500,
+            450200,
+            3400,
+            6590
+        };
 
 
         public static void Seed(this WebApplication app)
@@ -65,8 +79,10 @@ namespace exercise.api.Data
             {
                 Random employeeRandom = new Random();
                 Random departmentRandom = new Random();
+                Random salaryRandom = new Random();
                 var employees = new List<Employee>();
                 var departments = new List<Department>();
+                var salaries = new List<Salary>();
 
                 if (!db.Departments.Any())
                 {
@@ -81,6 +97,20 @@ namespace exercise.api.Data
                     db.Departments.AddRange(departments);
                 }
 
+                if (!db.Salaries.Any())
+                {
+                    for (int x = 1; x < 6; x++)
+                    {
+                        Salary salary = new Salary();
+                        salary.Id = x;
+                        salary.Grade = SalaryGrade[salaryRandom.Next(SalaryGrade.Count)];
+                        salary.MinSalary = MinSalary[salaryRandom.Next(MinSalary.Count)];
+                        salary.MaxSalary = MaxSalary[salaryRandom.Next(MaxSalary.Count)];
+                        salaries.Add(salary);
+                    }
+                    db.Salaries.AddRange(salaries);
+                }
+
                 if (!db.Employees.Any())
                 {
                     for (int x = 1; x < 80; x++)
@@ -90,14 +120,12 @@ namespace exercise.api.Data
                         employee.Name = Names[employeeRandom.Next(Names.Count)];
                         employee.DepartmentId = departments[departmentRandom.Next(departments.Count)].Id;
                         employee.JobName = $"{FirstWord[employeeRandom.Next(FirstWord.Count)]} {SecondWord[employeeRandom.Next(SecondWord.Count)]}";
-                        employee.SalaryGrade =SalaryGrade[employeeRandom.Next(SalaryGrade.Count)];
+                        employee.SalaryId = salaries[salaryRandom.Next(salaries.Count)].Id;
                         employees.Add(employee);
                     }
                     db.Employees.AddRange(employees);
                 }
-
-               
-
+                
                 db.SaveChanges();
             }
         }
