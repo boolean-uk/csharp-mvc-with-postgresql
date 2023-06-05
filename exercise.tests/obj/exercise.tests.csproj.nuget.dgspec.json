@@ -1,23 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Boolean\\3ApisDataStores\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj": {}
+    "C:\\GitHub\\Experis\\week10\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj": {}
   },
   "projects": {
-    "C:\\Boolean\\3ApisDataStores\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj": {
+    "C:\\GitHub\\Experis\\week10\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Boolean\\3ApisDataStores\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj",
+        "projectUniqueName": "C:\\GitHub\\Experis\\week10\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj",
         "projectName": "exercise.tests",
-        "projectPath": "C:\\Boolean\\3ApisDataStores\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Boolean\\3ApisDataStores\\csharp-mvc-with-postgresql\\exercise.tests\\obj\\",
+        "projectPath": "C:\\GitHub\\Experis\\week10\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj",
+        "packagesPath": "C:\\Users\\MJdeR\\.nuget\\packages\\",
+        "outputPath": "C:\\GitHub\\Experis\\week10\\csharp-mvc-with-postgresql\\exercise.tests\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\MJdeR\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
