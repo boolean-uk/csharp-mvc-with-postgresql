@@ -7,14 +7,35 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DataContext\**" />
+    <Compile Remove="Models\**" />
+    <Content Remove="DataContext\**" />
+    <Content Remove="Models\**" />
+    <EmbeddedResource Remove="DataContext\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="DataContext\**" />
+    <None Remove="Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="7.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="7.0.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
-    <Folder Include="DataContext\" />
-    <Folder Include="Repository\" />
+    <Folder Include="EndPoint\" />
+    <Folder Include="Data\" />
   </ItemGroup>
 
 </Project>
