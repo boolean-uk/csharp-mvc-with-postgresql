@@ -10,13 +10,15 @@ namespace exercise.api.EndPoint
             app.MapPost("/Employees", PostEmployee);
             app.MapGet("/Employees", GetEmployees);
             app.MapGet("/Employees/{id}", GetEmployee);
+            app.MapPut("/Employees", UpdateEmployee);
+            app.MapDelete("Employees/{id}", DeleteEmployee);
         }
 
         private static async Task<IResult> PostEmployee(Employee employee, IEmployeeRepository repository)
         {
             try
             {
-                if (repository.AddEmployee(employee)) return Results.Ok();
+                if (repository.AddEmployee(employee)) return Results.Ok(employee);
                 return Results.NotFound();
             }
             catch (Exception ex)
@@ -55,5 +57,34 @@ namespace exercise.api.EndPoint
                 }
             }
         }
+
+        private static async Task<IResult> UpdateEmployee(Employee employee, IEmployeeRepository repository)
+        {
+            try
+            {
+                return await Task.Run(() =>
+                {
+                    if (repository.UpdateEmployee(employee)) return Results.Ok(employee);
+                    return Results.NotFound();
+                });
+            } 
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
+        }
+        private static async Task<IResult> DeleteEmployee(int id, IEmployeeRepository repository)
+        {
+            try
+            {
+                if (repository.DeleteEmployee(id)) return Results.Ok();
+                return Results.NotFound();
+            }
+            catch (Exception ex)
+            {
+                return Results.Problem(ex.Message);
+            }
+        }
+
     }
 }

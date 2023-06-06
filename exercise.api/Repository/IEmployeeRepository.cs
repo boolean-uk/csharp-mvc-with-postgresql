@@ -8,8 +8,8 @@ namespace exercise.api.Repository
        bool AddEmployee(Employee employee);
        IEnumerable<Employee> GetEmployees();
        Employee GetAEmployee(int id);
-       // bool UpdateEmployee(Employee employee);
-       // bool DeleteEmployee(int id);
+        bool UpdateEmployee(Employee employee);
+        bool DeleteEmployee(int id);
 
     }
 }

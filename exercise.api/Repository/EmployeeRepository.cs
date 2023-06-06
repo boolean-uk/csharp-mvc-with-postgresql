@@ -34,5 +34,31 @@ namespace exercise.api.Repository
                 return db.Employees.ToList();
             }
         }
+
+        public bool UpdateEmployee(Employee employee)
+        {
+            using (var db = new EmployeeContext())
+            {
+                db.Update(employee);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public bool DeleteEmployee(int id)
+        {
+            using (var db = new EmployeeContext())
+            {
+                var a = db.Employees.Find(id);
+                if (a != null)
+                {
+                    db.Employees.Remove(a);
+                    db.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+        }
     }
 }

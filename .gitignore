@@ -363,8 +363,8 @@ MigrationBackup/
 FodyWeavers.xsd
 
 
-exercise.api/obj/[Dd]ebug
-exercise.api/bin/
+/exercise.api/obj/[Dd]ebug
+/exercise.api/bin/
 
 /exercise.api/appsettings.json
 /exercise.api/appsettings.Development.json
