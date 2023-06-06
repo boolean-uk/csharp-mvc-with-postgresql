@@ -11,9 +11,10 @@ namespace exercise.api.EndPoint
         {
             app.MapGet("/employees", GetEmployees);
             app.MapGet("/employees/{id}", GetEmployee);
-            app.MapPost("/employees/", AddEmployee);
+            app.MapPost("/employees", AddEmployee);
             app.MapPut("/employees", UpdateEmployee);
             app.MapDelete("/employees/{id}", DeleteEmployee);
+
         }
 
         public static async Task<IResult> GetEmployees(IEmployeeRepository repository)
@@ -60,7 +61,7 @@ namespace exercise.api.EndPoint
             try
             {
                 var item = repository.AddEmployee(employee);
-                return item != null ? Results.Created("https://localhost:7174/employees/", employee) : Results.Problem("There is no employee to be added");
+                return item != null ? Results.Created("https://localhost:7174/employees", employee) : Results.Problem("There is no employee to be added");
             }
             catch (Exception ex)
             {

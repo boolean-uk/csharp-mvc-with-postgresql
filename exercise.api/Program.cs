@@ -30,4 +30,8 @@ app.MapControllers();
 
 app.ConfigureEmployeeApi();
 
+app.ConfigureDepartmentApi();
+
+app.ConfigureSalaryApi();
+
 app.Run();

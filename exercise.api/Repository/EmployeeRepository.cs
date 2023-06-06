@@ -25,13 +25,9 @@ namespace exercise.api.Repository
             using (var db = new EmployeeContext())
             {
                 var employee = db.Employees.FirstOrDefault(x => x.Id == id);
-                if (employee != null)
-                {
-                    db.Employees.Remove(employee);
-                    db.SaveChanges();
-                    return employee;
-                }
-                return null;
+                db.Employees.Remove(employee);
+                db.SaveChanges();
+                return employee;
             }
         }
 
@@ -39,7 +35,7 @@ namespace exercise.api.Repository
         {
             using (var db = new EmployeeContext())
             {
-                var employee = db.Employees.FirstOrDefault(x => x.Id == id);
+                var employee = db.Employees.Include(e => e.Department).Include(e => e.Salary).FirstOrDefault(x => x.Id == id);
                 return employee;
             }
         }
@@ -48,7 +44,7 @@ namespace exercise.api.Repository
         {
             using (var db = new EmployeeContext())
             {
-                return db.Employees.ToList();
+                return db.Employees.Include(e => e.Department).Include(e => e.Salary).ToList();
             }
         }
 
@@ -59,6 +55,102 @@ namespace exercise.api.Repository
                 db.Employees.Update(employee);
                 db.SaveChanges();
                 return employee;
+            }
+        }
+
+        public Salary AddSalary(Salary salary)
+        {
+            using (var db = new EmployeeContext())
+            {
+                db.Salaries.Add(salary);
+                db.SaveChanges();
+                return salary;
+            }
+        }
+
+        public Salary DeleteSalary(int id)
+        {
+            using (var db = new EmployeeContext())
+            {
+                var salary = db.Salaries.FirstOrDefault(x => x.Id == id);
+                db.Salaries.Remove(salary);
+                db.SaveChanges();
+                return salary;
+            }
+        }
+
+        public Salary GetSalary(int id)
+        {
+            using (var db = new EmployeeContext())
+            {
+                var salary = db.Salaries.FirstOrDefault(x => x.Id == id);
+                return salary;
+            }
+        }
+
+        public IEnumerable<Salary> GetSalaries()
+        {
+            using (var db = new EmployeeContext())
+            {
+                return db.Salaries.ToList();
+            }
+        }
+
+        public Salary UpdateSalary(Salary salary)
+        {
+            using (var db = new EmployeeContext())
+            {
+                db.Salaries.Update(salary);
+                db.SaveChanges();
+                return salary;
+            }
+        }
+
+        public Department AddDepartment(Department department)
+        {
+            using (var db = new EmployeeContext())
+            {
+                db.Departments.Add(department);
+                db.SaveChanges();
+                return department;
+            }
+        }
+
+        public Department DeleteDepartment(int id)
+        {
+            using (var db = new EmployeeContext())
+            {
+                var department = db.Departments.FirstOrDefault(x => x.Id == id);
+                db.Departments.Remove(department);
+                db.SaveChanges();
+                return department;
+            }
+        }
+
+        public Department GetDepartment(int id)
+        {
+            using (var db = new EmployeeContext())
+            {
+                var department = db.Departments.FirstOrDefault(x => x.Id == id);
+                return department;
+            }
+        }
+
+        public IEnumerable<Department> GetDepartments()
+        {
+            using (var db = new EmployeeContext())
+            {
+                return db.Departments.ToList();
+            }
+        }
+
+        public Department UpdateDepartment(Department department)
+        {
+            using (var db = new EmployeeContext())
+            {
+                db.Departments.Update(department);
+                db.SaveChanges();
+                return department;
             }
         }
     }
