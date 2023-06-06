@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Boolean\\3ApisDataStores\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj": {}
+    "C:\\Users\\thana\\Desktop\\boolean\\c#\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj": {}
   },
   "projects": {
-    "C:\\Boolean\\3ApisDataStores\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj": {
+    "C:\\Users\\thana\\Desktop\\boolean\\c#\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Boolean\\3ApisDataStores\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj",
+        "projectUniqueName": "C:\\Users\\thana\\Desktop\\boolean\\c#\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj",
         "projectName": "exercise.tests",
-        "projectPath": "C:\\Boolean\\3ApisDataStores\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Boolean\\3ApisDataStores\\csharp-mvc-with-postgresql\\exercise.tests\\obj\\",
+        "projectPath": "C:\\Users\\thana\\Desktop\\boolean\\c#\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj",
+        "packagesPath": "C:\\Users\\thana\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\thana\\Desktop\\boolean\\c#\\csharp-mvc-with-postgresql\\exercise.tests\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\thana\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -80,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
         }
       }
     }
