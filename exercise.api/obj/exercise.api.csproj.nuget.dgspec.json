@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Boolean\\3ApisDataStores\\csharp-mvc-with-postgresql\\exercise.api\\exercise.api.csproj": {}
+    "C:\\Users\\Pac-Man\\Desktop\\Experis\\week10\\csharp-mvc-with-postgresql\\exercise.api\\exercise.api.csproj": {}
   },
   "projects": {
-    "C:\\Boolean\\3ApisDataStores\\csharp-mvc-with-postgresql\\exercise.api\\exercise.api.csproj": {
+    "C:\\Users\\Pac-Man\\Desktop\\Experis\\week10\\csharp-mvc-with-postgresql\\exercise.api\\exercise.api.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Boolean\\3ApisDataStores\\csharp-mvc-with-postgresql\\exercise.api\\exercise.api.csproj",
+        "projectUniqueName": "C:\\Users\\Pac-Man\\Desktop\\Experis\\week10\\csharp-mvc-with-postgresql\\exercise.api\\exercise.api.csproj",
         "projectName": "exercise.api",
-        "projectPath": "C:\\Boolean\\3ApisDataStores\\csharp-mvc-with-postgresql\\exercise.api\\exercise.api.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Boolean\\3ApisDataStores\\csharp-mvc-with-postgresql\\exercise.api\\obj\\",
+        "projectPath": "C:\\Users\\Pac-Man\\Desktop\\Experis\\week10\\csharp-mvc-with-postgresql\\exercise.api\\exercise.api.csproj",
+        "packagesPath": "C:\\Users\\Pac-Man\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Pac-Man\\Desktop\\Experis\\week10\\csharp-mvc-with-postgresql\\exercise.api\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Pac-Man\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -46,6 +43,26 @@
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[7.0.4, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

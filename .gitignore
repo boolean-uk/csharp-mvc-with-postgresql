@@ -1,0 +1,6 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/exercise.api/appsettings.json
+/exercise.api/bin/Debug/net7.0/appsettings.json
