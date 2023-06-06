@@ -22,6 +22,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.ConfigureEmployeeApi();
+app.ConfigureDepartmentApi();
+app.ConfigureSalaryApi();
 
 app.UseHttpsRedirection();
 
