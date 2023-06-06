@@ -987,23 +987,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Admin\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\Spili\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Boolean\\3ApisDataStores\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj",
+      "projectUniqueName": "C:\\Users\\Spili\\experis\\csharp\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj",
       "projectName": "exercise.tests",
-      "projectPath": "C:\\Boolean\\3ApisDataStores\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj",
-      "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\Boolean\\3ApisDataStores\\csharp-mvc-with-postgresql\\exercise.tests\\obj\\",
+      "projectPath": "C:\\Users\\Spili\\experis\\csharp\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj",
+      "packagesPath": "C:\\Users\\Spili\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Spili\\experis\\csharp\\csharp-mvc-with-postgresql\\exercise.tests\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Spili\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
