@@ -33,7 +33,7 @@ namespace exercise.api.Repository
             Employee result;
             using (var db = new EmployeeContext())
             {
-                result = db.Employees.Find(id);
+                result = db.Employees.Include(e => e.SalaryGrade).Include(e => e.Department).FirstOrDefault(x => x.Id == id);
                 db.SaveChanges();
                 return result;
             };
