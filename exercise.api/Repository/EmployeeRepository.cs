@@ -1,5 +1,6 @@
 ﻿using exercise.api.Data;
 using exercise.api.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace exercise.api.Repository
 {
@@ -22,7 +23,8 @@ namespace exercise.api.Repository
             Employee result;
             using (var db = new EmployeeContext())
             {
-                result = db.Employees.Find(id);
+                
+                result = db.Employees.Include(e => e.Salary).Include(b => b.Department).FirstOrDefault(x => x.Id == id);
             }
             return result;
         }
@@ -31,7 +33,7 @@ namespace exercise.api.Repository
         {
             using (var db = new EmployeeContext())
             {
-                return db.Employees.ToList();
+                return db.Employees.Include(e => e.Salary).Include(b => b.Department).ToList();
             }
         }
 
