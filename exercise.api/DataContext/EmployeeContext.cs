@@ -20,5 +20,7 @@ namespace exercise.api.DataContext
         }
 
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<Salary> Salary { get; set; }
+
     }
 }

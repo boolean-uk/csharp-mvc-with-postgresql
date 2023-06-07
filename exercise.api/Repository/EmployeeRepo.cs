@@ -15,6 +15,17 @@ namespace exercise.api.Repository
                 return employee;
             }
         }
+
+        public Salary AddSalaryGrade(Salary sal)
+        {
+            using (var db = new EmployeeContext())
+            {
+                db.Salary.Add(sal);
+                db.SaveChanges();
+                return sal;
+            }
+        }
+
         //deletes employee with the given id
 
         public IEnumerable<Employee> DeleteEmployee(int id)
@@ -32,6 +43,23 @@ namespace exercise.api.Repository
 
             }
         }
+
+        public IEnumerable<Salary> DeleteSalary(int id)
+        {
+            using (var db = new EmployeeContext())
+            {
+                var salaryDelete = db.Salary.FirstOrDefault(x => x.Id == id);
+                if (salaryDelete != null)
+                {
+                    db.Remove(salaryDelete);
+                    db.SaveChanges();
+                    return db.Salary.ToList();
+                }
+                return null;
+
+            }
+        }
+
         //gets all employees
 
         public IEnumerable<Employee> GetAllEmployees()
@@ -56,6 +84,28 @@ namespace exercise.api.Repository
                 return null;
             }
         }
+
+        public IEnumerable<Salary> GetSalaries()
+        {
+            using (var db = new EmployeeContext())
+            {
+                return db.Salary.ToList();
+            }
+        }
+
+        public Salary GetSalary(int id)
+        {
+            using (var db = new EmployeeContext())
+            {
+                var salary = db.Salary.FirstOrDefault(x => x.Id == id);
+                if (salary != null)
+                {
+                    return salary;
+                }
+                return null;
+            }
+        }
+
         //updates an  employee with the given id
 
         public Employee UpdateEmployee(Employee employee, int id)
@@ -76,6 +126,26 @@ namespace exercise.api.Repository
                 }
                 return empl;
             }
+        }
+
+        public Salary UpdateSalaryGrade(Salary salary, int id)
+        {
+            using (var db = new EmployeeContext())
+            {
+                var sal = db.Salary.Find(id);
+                if (sal != null)
+                {
+                    sal.minSalary = salary.minSalary;
+                    sal.maxSalary = salary.maxSalary;
+                    sal.grade = salary.grade;
+                    sal.Id = salary.Id;
+                    db.Update(sal);
+                    db.SaveChanges();
+                    return sal;
+                }
+                return sal;
+            }
+
         }
     }
 }
