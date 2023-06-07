@@ -21,6 +21,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.ConfigureEmployeeApi();
+app.ConfigureDepartmentApi();
+app.ConfigureSalaryApi();
 
 app.UseHttpsRedirection();
 

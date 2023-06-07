@@ -2,6 +2,7 @@
 
 namespace exercise.api.Model
 {
+    [Table("Employees")]
     public class Employee
     {
         public int Id { get; set; }

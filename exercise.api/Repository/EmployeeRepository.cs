@@ -62,5 +62,117 @@ namespace exercise.api.Repository
                 return false;
             }
         }
+        public bool AddDepartment(Department department)
+        {
+            using (var db = new EmployeeContext())
+            {
+                db.Departments.Add(department);
+                db.SaveChanges();
+                return true;
+
+            }
+            return false;
+        }
+
+        public IEnumerable<Department> GetDepartments()
+        {
+            using (var db = new EmployeeContext())
+            {
+                return db.Departments.ToList();
+
+            }
+        }
+        public Department GetADepartment(int id)
+        {
+            Department result;
+            using (var db = new EmployeeContext())
+            {
+
+                result = db.Departments.Find(id);
+            }
+            return result;
+        }
+
+        public bool UpdateDepartment(Department department)
+        {
+            using (var db = new EmployeeContext())
+            {
+                db.Update(department);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public bool DeleteDepartment(int id)
+        {
+            using (var db = new EmployeeContext())
+            {
+                var a = db.Departments.Find(id);
+                if (a != null)
+                {
+                    db.Departments.Remove(a);
+                    db.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public bool AddSalary(Salary salary)
+        {
+            using (var db= new EmployeeContext())
+            {
+                db.Salaries.Add(salary);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public IEnumerable<Salary> GetSalaries() 
+        {
+            using(var db = new EmployeeContext())
+            {
+                return db.Salaries.ToList();
+            }
+        }
+
+        public Salary GetASalary(int id)
+        {
+            Salary result;
+            using (var db = new EmployeeContext())
+            {
+
+                result = db.Salaries.Find(id);
+            }
+            return result;
+        }
+
+        public bool UpdateASalary(Salary salary)
+        {
+            using (var db = new EmployeeContext())
+            {
+                db.Update(salary);
+                db.SaveChanges();
+                return true;
+            }
+            return false;
+        }
+
+        public bool DeleteSalary(int id)
+        {
+            using (var db = new EmployeeContext())
+            {
+                var a = db.Salaries.Find(id);
+                if (a != null)
+                {
+                    db.Salaries.Remove(a);
+                    db.SaveChanges();
+                    return true;
+                }
+                return false;
+            }
+        }
     }
 }
