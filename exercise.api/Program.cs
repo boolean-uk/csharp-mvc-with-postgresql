@@ -1,9 +1,14 @@
+using exercise.api.Endpoint;
+using exercise.api.Repository;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+//adds the scope for the IEmployeeRepo so we can use EmployRepo
+builder.Services.AddScoped<IEmployeeRepo, EmployeeRepo>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -17,6 +22,9 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+app.ConfigureEmployeeApi();
+app.ConfigureSalaryApi();
+
 
 app.UseAuthorization();
 
