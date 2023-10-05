@@ -1,5 +1,5 @@
 ﻿using exercise.api.DTOs;
-using exercise.api.Models;
+using exercise.api.Factorys;
 using exercise.api.Repositoy;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,10 +10,13 @@ namespace exercise.api.Controllers
     public class EmployeeController : ControllerBase
     {
         private readonly IEmployeeRepository _repository;
+        // added factory
+        private readonly IEmployeeFactory _employeeFactory;
 
-        public EmployeeController(IEmployeeRepository repository)
+        public EmployeeController(IEmployeeRepository repository, IEmployeeFactory employeeFactory)
         {
             _repository = repository;
+            _employeeFactory = employeeFactory;
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]
@@ -27,13 +30,9 @@ namespace exercise.api.Controllers
             }
 
             // converting the dto to enity
-            var employee = new Employee
-            {
-                Name = employeeInput.Name,
-                JobName = employeeInput.JobName,
-                SalaryGrade = employeeInput.SalaryGrade,
-                Department = employeeInput.Department
-            };
+            // used the factory for not newing in the creation itself
+            var employee = _employeeFactory.FromDTO(employeeInput);
+
             await _repository.Add(employee);
             return Results.Created($"/api/employees/{employee.Id}", employee);
         }
@@ -75,10 +74,8 @@ namespace exercise.api.Controllers
             }
 
             // and update properties from dto
-            existingEmployee.Name = employeeInput.Name;
-            existingEmployee.JobName = employeeInput.JobName;
-            existingEmployee.SalaryGrade = employeeInput.SalaryGrade;
-            existingEmployee.Department = employeeInput.Department;
+            // used factory for not newing in updating
+            _employeeFactory.UpdateFromDTO(existingEmployee, employeeInput);
 
             await _repository.Update(existingEmployee);
             return Results.Created($"/api/employees/{existingEmployee.Id}", existingEmployee);

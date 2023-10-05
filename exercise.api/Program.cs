@@ -1,4 +1,5 @@
 using exercise.api.Data;
+using exercise.api.Factorys;
 using exercise.api.Repositoy;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,6 +17,7 @@ builder.Services.AddDbContext<EmployeeContext>(options =>
     options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddTransient<IEmployeeFactory, EmployeeFactory>();
 
 var app = builder.Build();
 
