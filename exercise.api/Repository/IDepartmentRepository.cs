@@ -1,6 +1,6 @@
 ﻿using exercise.api.Models;
 
-namespace exercise.api.Repositoy
+namespace exercise.api.Repository
 {
     public interface IDepartmentRepository
     {

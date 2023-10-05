@@ -14,6 +14,17 @@ namespace exercise.api.Factorys
             };
         }
 
+        public DepartmentOutputDTO ToDTO(Department department)
+        {
+            return new DepartmentOutputDTO
+            {
+                Id = department.Id,
+                Name = department.Name,
+                Location = department.Location,
+                EmployeeNames = department.Employees.Select(e => e.Name).ToList()
+            };
+        }
+
         public void UpdateFromDTO(Department existingDepartment, DepartmentDTO dto)
         {
             existingDepartment.Name = dto.Name;

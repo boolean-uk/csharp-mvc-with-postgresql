@@ -9,6 +9,13 @@ namespace exercise.api.Models
         public string Name { get; set; }
         public string JobName { get; set; }
         public string SalaryGrade { get; set; }
-        public string Department { get; set; }
+
+        //adding fk for department
+        [ForeignKey("Department")]
+        public int DepartmentId { get; set; }
+        // navigation
+        public Department Department { get; set; }
+
+
     }
 }

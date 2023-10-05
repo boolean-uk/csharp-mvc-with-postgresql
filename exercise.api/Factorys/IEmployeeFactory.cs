@@ -7,5 +7,6 @@ namespace exercise.api.Factorys
     {
         Employee FromDTO(EmployeeInputDTO dto);
         void UpdateFromDTO(Employee employee, EmployeeInputDTO dto);
+        EmployeeOutputDTO ToDTO(Employee employee);
     }
 }

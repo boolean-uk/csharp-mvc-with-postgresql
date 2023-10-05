@@ -5,7 +5,7 @@
 namespace exercise.api.Migrations
 {
     /// <inheritdoc />
-    public partial class UpdatedMigrationForChanges : Migration
+    public partial class outputDTOsMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

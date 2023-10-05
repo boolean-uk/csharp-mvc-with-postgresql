@@ -18,7 +18,6 @@ namespace exercise.api.DTOs
         public string SalaryGrade { get; set; }
 
         [Required(ErrorMessage = "Department is required.")]
-        [StringLength(100, ErrorMessage = "Department can't be longer than 100 characters.")]
-        public string Department { get; set; }
+        public int DepartmentId { get; set; }
     }
 }

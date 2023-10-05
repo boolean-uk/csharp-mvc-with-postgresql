@@ -1,6 +1,6 @@
 using exercise.api.Data;
 using exercise.api.Factorys;
-using exercise.api.Repositoy;
+using exercise.api.Repository;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,8 +17,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-builder.Services.AddScoped<IDepartmentFactory, DepartmentFactory>();
-
+builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
+builder.Services.AddTransient<IDepartmentFactory, DepartmentFactory>();
 builder.Services.AddTransient<IEmployeeFactory, EmployeeFactory>();
 
 var app = builder.Build();
@@ -32,7 +32,7 @@ using (var scope = app.Services.CreateScope())
     {
         var context = services.GetRequiredService<AppDbContext>();
         var seeder = new Seeder(context);
-        seeder.SeedEmployees();
+        seeder.SeedData();
     }
     catch (Exception ex)
     {

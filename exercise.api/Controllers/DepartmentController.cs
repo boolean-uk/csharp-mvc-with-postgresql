@@ -1,6 +1,6 @@
 ﻿using exercise.api.DTOs;
 using exercise.api.Factorys;
-using exercise.api.Repositoy;
+using exercise.api.Repository;
 using Microsoft.AspNetCore.Mvc;
 
 namespace exercise.api.Controllers
@@ -40,7 +40,8 @@ namespace exercise.api.Controllers
         public async Task<IResult> GetDepartments()
         {
             var departments = await _repository.GetAll();
-            return Results.Ok(departments);
+            var departmentDTOs = departments.Select(_departmentFactory.ToDTO).ToList();
+            return Results.Ok(departmentDTOs);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -50,9 +51,10 @@ namespace exercise.api.Controllers
             var department = await _repository.GetById(id);
             if (department == null)
             {
-                return (IResult)NotFound();
+                return Results.NotFound();
             }
-            return Results.Ok(department);
+            var departmentDTO = _departmentFactory.ToDTO(department);
+            return Results.Ok(departmentDTO);
         }
 
         [ProducesResponseType(StatusCodes.Status201Created)]

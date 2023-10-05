@@ -7,6 +7,7 @@ namespace exercise.api.Factorys
     {
         Department Create(DepartmentDTO dto);
         void UpdateFromDTO(Department existingDepartment, DepartmentDTO dto);
+        DepartmentOutputDTO ToDTO(Department department);
 
     }
 }

@@ -12,7 +12,20 @@ namespace exercise.api.Factorys
                 Name = dto.Name,
                 JobName = dto.JobName,
                 SalaryGrade = dto.SalaryGrade,
-                Department = dto.Department
+                DepartmentId = dto.DepartmentId
+            };
+        }
+
+        public EmployeeOutputDTO ToDTO(Employee employee)
+        {
+            return new EmployeeOutputDTO
+            {
+                Id = employee.Id,
+                Name = employee.Name,
+                JobName = employee.JobName,
+                SalaryGrade = employee.SalaryGrade,
+                DepartmentId = employee.DepartmentId,
+                DepartmentName = employee.Department.Name
             };
         }
 
@@ -21,7 +34,7 @@ namespace exercise.api.Factorys
             employee.Name = dto.Name;
             employee.JobName = dto.JobName;
             employee.SalaryGrade = dto.SalaryGrade;
-            employee.Department = dto.Department;
+            employee.DepartmentId = dto.DepartmentId;
         }
     }
 }

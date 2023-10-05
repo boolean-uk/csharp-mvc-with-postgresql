@@ -13,29 +13,38 @@ namespace exercise.api.Data
             _context = context;
         }
 
-        public void SeedEmployees(int numberOfEmployees = 100) //100 sounds enough for this exercise
+        public void SeedData(int numberOfDepartments = 10, int employeesPerDepartment = 10)
         {
-            // first ensure database exists
+            // Ensure the database is created
             _context.Database.EnsureCreated();
 
-            // If the database already contains entries, no seeding is required
-            if (_context.Employees.Any())
+            if (!_context.Departments.Any())
             {
-                return;
+                // Seed departments first
+                var departmentFaker = new Faker<Department>()
+                    .RuleFor(d => d.Name, f => f.Commerce.Department())
+                    .RuleFor(d => d.Location, f => f.Address.City());
+
+                var departments = departmentFaker.Generate(numberOfDepartments);
+                _context.Departments.AddRange(departments);
+                _context.SaveChanges();
             }
 
-            // then use Bogus to generate entries
-            var faker = new Faker<Employee>()
-                .RuleFor(e => e.Name, f => f.Name.FullName())
-                .RuleFor(e => e.JobName, f => f.Name.JobTitle())
-                .RuleFor(e => e.SalaryGrade, f => f.Random.Int(1, 10).ToString())
-                .RuleFor(e => e.Department, f => f.Commerce.Department());
+            if (!_context.Employees.Any())
+            {
+                // Now seed employees and associate them with the departments
+                var departmentsInDb = _context.Departments.ToList();
 
-            var employees = faker.Generate(numberOfEmployees);
+                var employeeFaker = new Faker<Employee>()
+                    .RuleFor(e => e.Name, f => f.Name.FullName())
+                    .RuleFor(e => e.JobName, f => f.Name.JobTitle())
+                    .RuleFor(e => e.SalaryGrade, f => f.Random.Int(1, 10).ToString())
+                    .RuleFor(e => e.DepartmentId, f => f.PickRandom(departmentsInDb).Id);
 
-            // add to dbset and save changes
-            _context.Employees.AddRange(employees);
-            _context.SaveChanges();
+                var employees = employeeFaker.Generate(numberOfDepartments * employeesPerDepartment);
+                _context.Employees.AddRange(employees);
+                _context.SaveChanges();
+            }
         }
     }
 }

@@ -2,7 +2,7 @@
 using exercise.api.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace exercise.api.Repositoy
+namespace exercise.api.Repository
 {
     public class EmployeeRepository : IEmployeeRepository
     {
@@ -19,10 +19,18 @@ namespace exercise.api.Repositoy
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IEnumerable<Employee>> GetAll() => await _context.Employees.ToListAsync();
-
-        public async Task<Employee> GetById(int id) => await _context.Employees.FindAsync(id);
-
+        public async Task<IEnumerable<Employee>> GetAll()
+        {
+            return await _context.Employees
+                .Include(e => e.Department)
+                .ToListAsync();
+        }
+        public async Task<Employee> GetById(int id)
+        {
+            return await _context.Employees
+                .Include(e => e.Department)
+                .FirstOrDefaultAsync(e => e.Id == id);
+        }
 
 
         public async Task Update(Employee employee)
