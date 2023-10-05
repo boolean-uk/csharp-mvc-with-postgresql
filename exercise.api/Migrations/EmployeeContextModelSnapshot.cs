@@ -9,7 +9,7 @@ using exercise.api.Data;
 
 namespace exercise.api.Migrations
 {
-    [DbContext(typeof(EmployeeContext))]
+    [DbContext(typeof(AppDbContext))]
     partial class EmployeeContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

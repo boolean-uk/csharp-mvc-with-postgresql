@@ -10,7 +10,7 @@ using exercise.api.Data;
 
 namespace exercise.api.Migrations
 {
-    [DbContext(typeof(EmployeeContext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20231004230053_CreateTheTable")]
     partial class CreateTheTable
     {

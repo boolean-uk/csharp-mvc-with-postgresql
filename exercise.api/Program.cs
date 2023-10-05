@@ -13,10 +13,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<EmployeeContext>(options =>
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+builder.Services.AddScoped<IDepartmentFactory, DepartmentFactory>();
+
 builder.Services.AddTransient<IEmployeeFactory, EmployeeFactory>();
 
 var app = builder.Build();
@@ -28,7 +30,7 @@ using (var scope = app.Services.CreateScope())
 
     try
     {
-        var context = services.GetRequiredService<EmployeeContext>();
+        var context = services.GetRequiredService<AppDbContext>();
         var seeder = new Seeder(context);
         seeder.SeedEmployees();
     }

@@ -6,9 +6,9 @@ namespace exercise.api.Repositoy
 {
     public class EmployeeRepository : IEmployeeRepository
     {
-        private readonly EmployeeContext _context;
+        private readonly AppDbContext _context;
 
-        public EmployeeRepository(EmployeeContext context)
+        public EmployeeRepository(AppDbContext context)
         {
             _context = context;
         }

@@ -6,9 +6,9 @@ namespace exercise.api.Data
     //used Bogus as seeder library https://github.com/bchavez/Bogus
     public class Seeder
     {
-        private readonly EmployeeContext _context;
+        private readonly AppDbContext _context;
 
-        public Seeder(EmployeeContext context)
+        public Seeder(AppDbContext context)
         {
             _context = context;
         }

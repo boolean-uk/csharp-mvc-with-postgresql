@@ -10,7 +10,7 @@ using exercise.api.Data;
 
 namespace exercise.api.Migrations
 {
-    [DbContext(typeof(EmployeeContext))]
+    [DbContext(typeof(AppDbContext))]
     [Migration("20231005085257_UpdatedMigrationForChanges")]
     partial class UpdatedMigrationForChanges
     {
