@@ -1,7 +1,6 @@
 ﻿using exercise.api.Data;
 using exercise.api.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
 
 namespace exercise.api.Repositoy
 {
@@ -14,15 +13,17 @@ namespace exercise.api.Repositoy
             _context = context;
         }
 
-        public async Task<IEnumerable<Employee>> GetAll() => await _context.Employees.ToListAsync();
-
-        public async Task<Employee> GetById(int id) => await _context.Employees.FindAsync(id);
-
         public async Task Add(Employee employee)
         {
             _context.Employees.Add(employee);
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<Employee>> GetAll() => await _context.Employees.ToListAsync();
+
+        public async Task<Employee> GetById(int id) => await _context.Employees.FindAsync(id);
+
+
 
         public async Task Update(Employee employee)
         {
