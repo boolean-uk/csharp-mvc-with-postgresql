@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace exercise.api.Migrations
 {
     /// <inheritdoc />
-    public partial class hopefullyTheFinalMigration : Migration
+    public partial class genericsTest : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

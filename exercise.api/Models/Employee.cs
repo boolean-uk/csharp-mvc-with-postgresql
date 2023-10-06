@@ -2,7 +2,7 @@
 
 namespace exercise.api.Models
 {
-    public class Employee
+    public class Employee : IEntityWithId
     {
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }

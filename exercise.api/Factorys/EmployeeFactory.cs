@@ -3,9 +3,9 @@ using exercise.api.Models;
 
 namespace exercise.api.Factorys
 {
-    public class EmployeeFactory : IEmployeeFactory
+    public class EmployeeFactory : Factory<Employee, EmployeeInputDTO, EmployeeOutputDTO>
     {
-        public Employee FromDTO(EmployeeInputDTO dto)
+        public override Employee FromDTO(EmployeeInputDTO dto)
         {
             return new Employee
             {
@@ -16,20 +16,23 @@ namespace exercise.api.Factorys
             };
         }
 
-        public EmployeeOutputDTO ToDTO(Employee employee)
+        public override EmployeeOutputDTO ToDTO(Employee employee)
         {
+            if (employee == null)
+            {
+                throw new ArgumentNullException(nameof(employee), "Employee is null");
+            }
             return new EmployeeOutputDTO
             {
                 Id = employee.Id,
                 Name = employee.Name,
                 JobName = employee.JobName,
-                SalaryGrade = employee.SalaryGrade.Grade,
-                DepartmentId = employee.DepartmentId,
-                DepartmentName = employee.Department.Name
+                SalaryGrade = employee.SalaryGrade?.Grade,
+                DepartmentName = employee.Department?.Name
             };
         }
 
-        public void UpdateFromDTO(Employee employee, EmployeeInputDTO dto)
+        public override void UpdateFromDTO(Employee employee, EmployeeInputDTO dto)
         {
             employee.Name = dto.Name;
             employee.JobName = dto.JobName;

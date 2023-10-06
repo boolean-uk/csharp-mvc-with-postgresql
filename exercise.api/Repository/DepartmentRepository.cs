@@ -4,45 +4,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace exercise.api.Repository
 {
-    public class DepartmentRepository : IDepartmentRepository
+    public class DepartmentRepository : Repository<Department>
     {
-        private readonly AppDbContext _context;
-        public DepartmentRepository(AppDbContext context)
-        {
-            _context = context;
-        }
+        public DepartmentRepository(AppDbContext context) : base(context) { }
 
-        public async Task Add(Department department)
+        public override IQueryable<Department> IncludeProperties(IQueryable<Department> query)
         {
-            _context.Departments.Add(department);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<IEnumerable<Department>> GetAll()
-        {
-            return await _context.Departments
-                .Include(d => d.Employees)
-                .ToListAsync();
-        }
-        public async Task<Department> GetById(int id)
-        {
-            return await _context.Departments
-                .Include(d => d.Employees)
-                .FirstOrDefaultAsync(d => d.Id == id);
-        }
-        public async Task Update(Department department)
-        {
-            _context.Entry(department).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-        }
-        public async Task Delete(int id)
-        {
-            var department = await _context.Departments.FindAsync(id);
-            if (department != null)
-            {
-                _context.Departments.Remove(department);
-                await _context.SaveChangesAsync();
-            }
+            return query.Include(d => d.Employees);
         }
     }
 }

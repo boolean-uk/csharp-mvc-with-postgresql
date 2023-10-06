@@ -1,5 +1,7 @@
 using exercise.api.Data;
+using exercise.api.DTOs;
 using exercise.api.Factorys;
+using exercise.api.Models;
 using exercise.api.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -23,13 +25,13 @@ builder.Services.AddSwaggerGen(c =>
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
 
-builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
-builder.Services.AddScoped<IDepartmentRepository, DepartmentRepository>();
-builder.Services.AddScoped<ISalaryGradeRepository, SalaryGradeRepository>();
+builder.Services.AddScoped<IRepository<Employee>, EmployeeRepository>();
+builder.Services.AddScoped<IRepository<Department>, DepartmentRepository>();
+builder.Services.AddScoped<IRepository<SalaryGrade>, SalaryGradeRepository>();
 
-builder.Services.AddTransient<IDepartmentFactory, DepartmentFactory>();
-builder.Services.AddTransient<IEmployeeFactory, EmployeeFactory>();
-builder.Services.AddTransient<ISalaryGradeFactory, SalaryGradeFactory>();
+builder.Services.AddTransient<IFactory<Department, DepartmentDTO, DepartmentOutputDTO>, DepartmentFactory>();
+builder.Services.AddTransient<IFactory<Employee, EmployeeInputDTO, EmployeeOutputDTO>, EmployeeFactory>();
+builder.Services.AddTransient<IFactory<SalaryGrade, SalaryGradeInputDTO, SalaryGradeOutputDTO>, SalaryGradeFactory>();
 
 var app = builder.Build();
 

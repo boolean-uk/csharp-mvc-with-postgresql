@@ -11,8 +11,8 @@ using exercise.api.Data;
 namespace exercise.api.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20231006093828_hopefullyTheFinalMigration")]
-    partial class hopefullyTheFinalMigration
+    [Migration("20231006123031_genericsTest")]
+    partial class genericsTest
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

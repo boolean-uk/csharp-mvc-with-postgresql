@@ -1,5 +1,6 @@
 ﻿using exercise.api.DTOs;
 using exercise.api.Factorys;
+using exercise.api.Models;
 using exercise.api.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,10 +10,11 @@ namespace exercise.api.Controllers
     [ApiController]
     public class SalaryGradeController : ControllerBase
     {
-        private readonly ISalaryGradeRepository _repository;
-        private readonly ISalaryGradeFactory _salaryGradeFactory;
+        private readonly IRepository<SalaryGrade> _repository;
+        // added factory
+        private readonly IFactory<SalaryGrade, SalaryGradeInputDTO, SalaryGradeOutputDTO> _salaryGradeFactory;
 
-        public SalaryGradeController(ISalaryGradeRepository repository, ISalaryGradeFactory salaryGradeFactory)
+        public SalaryGradeController(IRepository<SalaryGrade> repository, IFactory<SalaryGrade, SalaryGradeInputDTO, SalaryGradeOutputDTO> salaryGradeFactory)
         {
             _repository = repository;
             _salaryGradeFactory = salaryGradeFactory;

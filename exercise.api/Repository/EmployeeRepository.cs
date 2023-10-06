@@ -4,51 +4,14 @@ using Microsoft.EntityFrameworkCore;
 
 namespace exercise.api.Repository
 {
-    public class EmployeeRepository : IEmployeeRepository
+    public class EmployeeRepository : Repository<Employee>
     {
-        private readonly AppDbContext _context;
+        public EmployeeRepository(AppDbContext context) : base(context) { }
 
-        public EmployeeRepository(AppDbContext context)
+        public override IQueryable<Employee> IncludeProperties(IQueryable<Employee> query)
         {
-            _context = context;
-        }
-
-        public async Task Add(Employee employee)
-        {
-            _context.Employees.Add(employee);
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task<IEnumerable<Employee>> GetAll()
-        {
-            return await _context.Employees
-                .Include(e => e.Department)
-                .Include(e => e.SalaryGrade)
-                .ToListAsync();
-        }
-
-        public async Task<Employee> GetById(int id)
-        {
-            return await _context.Employees
-                .Include(e => e.Department)
-                .Include(e => e.SalaryGrade)
-                .FirstOrDefaultAsync(e => e.Id == id);
-        }
-
-        public async Task Update(Employee employee)
-        {
-            _context.Entry(employee).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
-        }
-
-        public async Task Delete(int id)
-        {
-            var employee = await _context.Employees.FindAsync(id);
-            if (employee != null)
-            {
-                _context.Employees.Remove(employee);
-                await _context.SaveChangesAsync();
-            }
+            return query.Include(e => e.Department)
+                        .Include(e => e.SalaryGrade);
         }
     }
 }

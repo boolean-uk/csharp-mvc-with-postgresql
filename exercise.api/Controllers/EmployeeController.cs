@@ -1,5 +1,6 @@
 ﻿using exercise.api.DTOs;
 using exercise.api.Factorys;
+using exercise.api.Models;
 using exercise.api.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,11 +10,11 @@ namespace exercise.api.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly IEmployeeRepository _repository;
+        private readonly IRepository<Employee> _repository;
         // added factory
-        private readonly IEmployeeFactory _employeeFactory;
+        private readonly IFactory<Employee, EmployeeInputDTO, EmployeeOutputDTO> _employeeFactory;
 
-        public EmployeeController(IEmployeeRepository repository, IEmployeeFactory employeeFactory)
+        public EmployeeController(IRepository<Employee> repository, IFactory<Employee, EmployeeInputDTO, EmployeeOutputDTO> employeeFactory)
         {
             _repository = repository;
             _employeeFactory = employeeFactory;
@@ -32,9 +33,10 @@ namespace exercise.api.Controllers
             // converting the dto to enity
             // used the factory for not newing in the creation itself
             var employee = _employeeFactory.FromDTO(employeeInput);
-
             await _repository.Add(employee);
-            return Results.Created($"/api/employees/{employee.Id}", employee);
+            // added for fetching a new created employee with ALL the data
+            employee = await _repository.GetByIdWithIncludes(employee.Id, e => e.Department, e => e.SalaryGrade);
+            return Results.Created($"/api/employees/{employee.Id}", _employeeFactory.ToDTO(employee));
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
@@ -80,7 +82,8 @@ namespace exercise.api.Controllers
             _employeeFactory.UpdateFromDTO(existingEmployee, employeeInput);
 
             await _repository.Update(existingEmployee);
-            return Results.Created($"/api/employees/{existingEmployee.Id}", existingEmployee);
+            var employeeDTO = _employeeFactory.ToDTO(existingEmployee);
+            return Results.Created($"/api/employees/{existingEmployee.Id}", employeeDTO);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]

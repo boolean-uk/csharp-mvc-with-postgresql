@@ -1,5 +1,6 @@
 ﻿using exercise.api.DTOs;
 using exercise.api.Factorys;
+using exercise.api.Models;
 using exercise.api.Repository;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,11 +10,11 @@ namespace exercise.api.Controllers
     [ApiController]
     public class DepartmentController : ControllerBase
     {
-        private readonly IDepartmentRepository _repository;
+        private readonly IRepository<Department> _repository;
+        // added factory
+        private readonly IFactory<Department, DepartmentDTO, DepartmentOutputDTO> _departmentFactory;
 
-        private readonly IDepartmentFactory _departmentFactory;
-
-        public DepartmentController(IDepartmentRepository repository, IDepartmentFactory departmentFactory)
+        public DepartmentController(IRepository<Department> repository, IFactory<Department, DepartmentDTO, DepartmentOutputDTO> departmentFactory)
         {
             _repository = repository;
             _departmentFactory = departmentFactory;
@@ -29,7 +30,7 @@ namespace exercise.api.Controllers
                 return Results.BadRequest(ModelState);
             }
 
-            var department = _departmentFactory.Create(departmentDTO);
+            var department = _departmentFactory.FromDTO(departmentDTO);
 
             await _repository.Add(department);
             return Results.Created($"/api/departments/{department.Id}", department);

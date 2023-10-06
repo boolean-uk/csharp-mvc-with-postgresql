@@ -3,9 +3,9 @@ using exercise.api.Models;
 
 namespace exercise.api.Factorys
 {
-    public class DepartmentFactory : IDepartmentFactory
+    public class DepartmentFactory : Factory<Department, DepartmentDTO, DepartmentOutputDTO>
     {
-        public Department Create(DepartmentDTO dto)
+        public override Department FromDTO(DepartmentDTO dto)
         {
             return new Department
             {
@@ -14,18 +14,18 @@ namespace exercise.api.Factorys
             };
         }
 
-        public DepartmentOutputDTO ToDTO(Department department)
+        public override DepartmentOutputDTO ToDTO(Department department)
         {
             return new DepartmentOutputDTO
             {
                 Id = department.Id,
                 Name = department.Name,
                 Location = department.Location,
-                EmployeeNames = department.Employees.Select(e => e.Name).ToList()
+                EmployeeNames = department.Employees?.Select(e => e.Name).ToList() ?? new List<string>()
             };
         }
 
-        public void UpdateFromDTO(Department existingDepartment, DepartmentDTO dto)
+        public override void UpdateFromDTO(Department existingDepartment, DepartmentDTO dto)
         {
             existingDepartment.Name = dto.Name;
             existingDepartment.Location = dto.Location;

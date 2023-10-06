@@ -3,9 +3,9 @@ using exercise.api.Models;
 
 namespace exercise.api.Factorys
 {
-    public class SalaryGradeFactory : ISalaryGradeFactory
+    public class SalaryGradeFactory : Factory<SalaryGrade, SalaryGradeInputDTO, SalaryGradeOutputDTO>
     {
-        public SalaryGrade FromDTO(SalaryGradeInputDTO inputDTO)
+        public override SalaryGrade FromDTO(SalaryGradeInputDTO inputDTO)
         {
             return new SalaryGrade
             {
@@ -15,14 +15,7 @@ namespace exercise.api.Factorys
             };
         }
 
-        public void UpdateFromDTO(SalaryGrade existingSalaryGrade, SalaryGradeInputDTO inputDTO)
-        {
-            existingSalaryGrade.Grade = inputDTO.Grade;
-            existingSalaryGrade.MinSalary = inputDTO.MinSalary;
-            existingSalaryGrade.MaxSalary = inputDTO.MaxSalary;
-        }
-
-        public SalaryGradeOutputDTO ToDTO(SalaryGrade salaryGrade)
+        public override SalaryGradeOutputDTO ToDTO(SalaryGrade salaryGrade)
         {
             return new SalaryGradeOutputDTO
             {
@@ -31,6 +24,13 @@ namespace exercise.api.Factorys
                 MinSalary = salaryGrade.MinSalary,
                 MaxSalary = salaryGrade.MaxSalary
             };
+        }
+
+        public override void UpdateFromDTO(SalaryGrade existingSalaryGrade, SalaryGradeInputDTO inputDTO)
+        {
+            existingSalaryGrade.Grade = inputDTO.Grade;
+            existingSalaryGrade.MinSalary = inputDTO.MinSalary;
+            existingSalaryGrade.MaxSalary = inputDTO.MaxSalary;
         }
     }
 }

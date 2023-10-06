@@ -1,6 +1,6 @@
 ﻿namespace exercise.api.Models
 {
-    public class SalaryGrade
+    public class SalaryGrade : IEntityWithId
     {
         public int Id { get; set; }
         public string Grade { get; set; }
