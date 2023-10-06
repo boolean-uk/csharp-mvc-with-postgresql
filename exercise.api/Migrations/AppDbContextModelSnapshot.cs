@@ -61,15 +61,39 @@ namespace exercise.api.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("SalaryGrade")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("SalaryGradeId")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
 
+                    b.HasIndex("SalaryGradeId");
+
                     b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("exercise.api.Models.SalaryGrade", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Grade")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("MaxSalary")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("MinSalary")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("SalaryGrades");
                 });
 
             modelBuilder.Entity("exercise.api.Models.Employee", b =>
@@ -80,10 +104,23 @@ namespace exercise.api.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("exercise.api.Models.SalaryGrade", "SalaryGrade")
+                        .WithMany("Employees")
+                        .HasForeignKey("SalaryGradeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("Department");
+
+                    b.Navigation("SalaryGrade");
                 });
 
             modelBuilder.Entity("exercise.api.Models.Department", b =>
+                {
+                    b.Navigation("Employees");
+                });
+
+            modelBuilder.Entity("exercise.api.Models.SalaryGrade", b =>
                 {
                     b.Navigation("Employees");
                 });

@@ -11,7 +11,7 @@ namespace exercise.api.Factorys
             {
                 Name = dto.Name,
                 JobName = dto.JobName,
-                SalaryGrade = dto.SalaryGrade,
+                SalaryGradeId = dto.SalaryGradeId,
                 DepartmentId = dto.DepartmentId
             };
         }
@@ -23,7 +23,7 @@ namespace exercise.api.Factorys
                 Id = employee.Id,
                 Name = employee.Name,
                 JobName = employee.JobName,
-                SalaryGrade = employee.SalaryGrade,
+                SalaryGrade = employee.SalaryGrade.Grade,
                 DepartmentId = employee.DepartmentId,
                 DepartmentName = employee.Department.Name
             };
@@ -33,7 +33,7 @@ namespace exercise.api.Factorys
         {
             employee.Name = dto.Name;
             employee.JobName = dto.JobName;
-            employee.SalaryGrade = dto.SalaryGrade;
+            employee.SalaryGradeId = dto.SalaryGradeId;
             employee.DepartmentId = dto.DepartmentId;
         }
     }

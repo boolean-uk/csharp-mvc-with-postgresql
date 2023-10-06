@@ -23,15 +23,17 @@ namespace exercise.api.Repository
         {
             return await _context.Employees
                 .Include(e => e.Department)
+                .Include(e => e.SalaryGrade)
                 .ToListAsync();
         }
+
         public async Task<Employee> GetById(int id)
         {
             return await _context.Employees
                 .Include(e => e.Department)
+                .Include(e => e.SalaryGrade)
                 .FirstOrDefaultAsync(e => e.Id == id);
         }
-
 
         public async Task Update(Employee employee)
         {

@@ -29,16 +29,30 @@ namespace exercise.api.Data
                 _context.Departments.AddRange(departments);
                 _context.SaveChanges();
             }
+            // then seed the salaries
+            if (!_context.SalaryGrades.Any())
+            {
+                var salaryGrades = Enumerable.Range(1, 10).Select(i => new SalaryGrade
+                {
+                    Grade = i.ToString(),
+                    MinSalary = i * 3000,
+                    MaxSalary = i * 3000 + 4000
+                }).ToList();
+
+                _context.SalaryGrades.AddRange(salaryGrades);
+                _context.SaveChanges();
+            }
 
             if (!_context.Employees.Any())
             {
-                // Now seed employees and associate them with the departments
+                // now seed employees and associate them with the departments and salarygrades
                 var departmentsInDb = _context.Departments.ToList();
+                var salaryGradesInDb = _context.SalaryGrades.ToList();
 
                 var employeeFaker = new Faker<Employee>()
                     .RuleFor(e => e.Name, f => f.Name.FullName())
                     .RuleFor(e => e.JobName, f => f.Name.JobTitle())
-                    .RuleFor(e => e.SalaryGrade, f => f.Random.Int(1, 10).ToString())
+                    .RuleFor(e => e.SalaryGradeId, f => f.PickRandom(salaryGradesInDb).Id)
                     .RuleFor(e => e.DepartmentId, f => f.PickRandom(departmentsInDb).Id);
 
                 var employees = employeeFaker.Generate(numberOfDepartments * employeesPerDepartment);

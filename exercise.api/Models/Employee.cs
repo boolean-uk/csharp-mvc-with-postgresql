@@ -8,14 +8,17 @@ namespace exercise.api.Models
         public int Id { get; set; }
         public string Name { get; set; }
         public string JobName { get; set; }
-        public string SalaryGrade { get; set; }
 
-        //adding fk for department
+        // adding fk to salarygrade
+        [ForeignKey("SalaryGrade")]
+        public int SalaryGradeId { get; set; }
+        // navigation
+        public SalaryGrade SalaryGrade { get; set; }
+
+        // adding fk for department
         [ForeignKey("Department")]
         public int DepartmentId { get; set; }
         // navigation
         public Department Department { get; set; }
-
-
     }
 }
