@@ -39,7 +39,7 @@ namespace exercise.api.Data
             "Software Developer",
             "Front-End Developer", 
             "Back-End Developer",
-            "CLoud Developer"
+            "Cloud Developer"
         };
 
         private static readonly List<string> SalaryGrades = new List<string>()

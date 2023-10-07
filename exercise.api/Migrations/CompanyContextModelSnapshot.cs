@@ -98,21 +98,17 @@ namespace exercise.api.Migrations
 
             modelBuilder.Entity("exercise.api.Models.Employee", b =>
                 {
-                    b.HasOne("exercise.api.Models.Department", "Department")
+                    b.HasOne("exercise.api.Models.Department", null)
                         .WithMany("Employees")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("exercise.api.Models.Salary", "Salary")
+                    b.HasOne("exercise.api.Models.Salary", null)
                         .WithMany("Employees")
                         .HasForeignKey("SalaryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Department");
-
-                    b.Navigation("Salary");
                 });
 
             modelBuilder.Entity("exercise.api.Models.Department", b =>
