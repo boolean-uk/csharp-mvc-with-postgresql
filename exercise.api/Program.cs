@@ -1,15 +1,20 @@
+using exercise.api.DataContext;
+using exercise.api.Data;
+using exercise.api.EndPoints;
+using exercise.api.Repository;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<ICompanyRepository, CompanyRepository>();
+builder.Services.AddDbContext<CompanyContext>();
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -17,9 +22,14 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.ConfigureEmployeesApi();
+app.ConfigureSalariesApi();
+app.ConfigureDepartmentsApi();
+
+app.Seed();
 
 app.Run();
