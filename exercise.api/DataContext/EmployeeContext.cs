@@ -7,17 +7,17 @@ namespace exercise.api.DataContext
     public class EmployeeContext : DbContext
     {
 
-        /*protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        private string connectionString;
+        public EmployeeContext()
         {
-            optionsBuilder.UseInMemoryDatabase(databaseName: "Employee");
-
-
-        }*/
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Employee>().HasKey(m => new { m.Id }); //used when the class doesn't meet EF naming convention.. (ok it does in this case ID but if it was something like AuthorReferenceNumber etc..
-
+            var configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
+            connectionString = configuration.GetValue<string>("ConnectionStrings:DefaultConnectionString");
         }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseNpgsql(connectionString);
+        }
+
 
         public DbSet<Employee> Employees { get; set; }
 
