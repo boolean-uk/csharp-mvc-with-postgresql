@@ -4,24 +4,24 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace exercise.api.EndPoint
 {
-    public static class EmployeeApi
+    public static class SalaryApi
     {
-        public static void ConfigureEmployeeApi(this WebApplication app)
+        public static void ConfigureSalaryApi(this WebApplication app)
         {
-            app.MapGet("/employees", GetEmployees);
-            app.MapGet("/employees/{id}", GetEmployee);
-            app.MapPost("/employees", InsertEmployee);
-            app.MapPut("/employees", UpdateEmployee);
-            app.MapDelete("/employees", DeleteEmployee);
+            app.MapGet("/salaries", GetSalaries);
+            app.MapGet("/salaries/{id}", GetSalary);
+            app.MapPost("/salaries", InsertSalary);
+            app.MapPut("/salaries", UpdateSalary);
+            app.MapDelete("/salaries", DeleteSalary);
         }
 
         [ProducesResponseType(StatusCodes.Status200OK)]
-        private static async Task<IResult> GetEmployees(IEmployeeRepository service)
+        private static async Task<IResult> GetSalaries(ISalaryRepo service)
         {
             try
             {
                 return await Task.Run(() => {
-                    return Results.Ok(service.GetAllEmployees());
+                    return Results.Ok(service.GetAllSalaryGrades());
                 });
             }
             catch (Exception ex)
@@ -32,13 +32,13 @@ namespace exercise.api.EndPoint
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        private static async Task<IResult> GetEmployee(int id, IEmployeeRepository service)
+        private static async Task<IResult> GetSalary(int id, ISalaryRepo service)
         {
             try
             {
                 return await Task.Run(() =>
                 {
-                    var person = service.GetEmployee(id);
+                    var person = service.GetSalary(id);
                     if (person == null) return Results.NotFound();
                     return Results.Ok(person);
                 });
@@ -52,11 +52,11 @@ namespace exercise.api.EndPoint
 
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        private static async Task<IResult> InsertEmployee(Employee employee, IEmployeeRepository service)
+        private static async Task<IResult> InsertSalary(Salary salary, ISalaryRepo service)
         {
             try
             {
-                if (service.AddEmployee(employee)) return Results.Ok();
+                if (service.AddSalary(salary)) return Results.Ok();
                 return Results.NotFound();
 
             }
@@ -69,13 +69,13 @@ namespace exercise.api.EndPoint
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        private static async Task<IResult> UpdateEmployee(Employee employee, IEmployeeRepository service)
+        private static async Task<IResult> UpdateSalary(Salary salary, ISalaryRepo service)
         {
             try
             {
                 return await Task.Run(() =>
                 {
-                    if (service.UpdateEmployee(employee)) return Results.Ok();
+                    if (service.UpdateSalary(salary)) return Results.Ok();
                     return Results.NotFound();
                 });
 
@@ -88,11 +88,11 @@ namespace exercise.api.EndPoint
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        private static async Task<IResult> DeleteEmployee(int id, IEmployeeRepository service)
+        private static async Task<IResult> DeleteSalary(int id, ISalaryRepo service)
         {
             try
             {
-                if (service.DeleteEmployee(id)) return Results.Ok();
+                if (service.DeleteSalary(id)) return Results.Ok();
                 return Results.NotFound();
 
             }
@@ -101,7 +101,5 @@ namespace exercise.api.EndPoint
                 return Results.Problem(ex.Message);
             }
         }
-
     }
 }
-

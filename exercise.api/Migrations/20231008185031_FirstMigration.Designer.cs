@@ -11,7 +11,7 @@ using exercise.api.DataContext;
 namespace exercise.api.Migrations
 {
     [DbContext(typeof(EmployeeContext))]
-    [Migration("20231008171806_FirstMigration")]
+    [Migration("20231008185031_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -23,6 +23,27 @@ namespace exercise.api.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("exercise.api.Models.Department", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("location")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Departments");
+                });
 
             modelBuilder.Entity("exercise.api.Models.Employee", b =>
                 {
@@ -51,6 +72,29 @@ namespace exercise.api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("exercise.api.Models.Salary", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("grade")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<int>("maxSalary")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("minSalary")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Salaries");
                 });
 #pragma warning restore 612, 618
         }
