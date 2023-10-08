@@ -50,9 +50,11 @@ namespace exercise.api.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<string>("department")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("SalaryId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("jobName")
                         .IsRequired()
@@ -62,11 +64,11 @@ namespace exercise.api.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("salaryGrade")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("SalaryId");
 
                     b.ToTable("Employees");
                 });
@@ -92,6 +94,25 @@ namespace exercise.api.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Salaries");
+                });
+
+            modelBuilder.Entity("exercise.api.Models.Employee", b =>
+                {
+                    b.HasOne("exercise.api.Models.Department", "Department")
+                        .WithMany()
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("exercise.api.Models.Salary", "Salary")
+                        .WithMany()
+                        .HasForeignKey("SalaryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Department");
+
+                    b.Navigation("Salary");
                 });
 #pragma warning restore 612, 618
         }

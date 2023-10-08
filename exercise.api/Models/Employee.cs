@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace exercise.api.Models
 {
@@ -8,7 +10,15 @@ namespace exercise.api.Models
 
         [Required] public string name { get; set; }
         [Required] public string jobName { get; set; }
-        [Required] public string salaryGrade { get; set; }
-        [Required] public string department { get; set; }
+
+        [ForeignKey("Salary")]
+        public int SalaryId { get; set; }
+        public Salary Salary { get; set; }
+
+        [ForeignKey("Department")]
+        public int DepartmentId { get; set; }
+        public Department Department { get; set; }
+
+
     }
 }

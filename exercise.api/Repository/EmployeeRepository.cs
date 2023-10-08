@@ -1,5 +1,6 @@
 ﻿using exercise.api.DataContext;
 using exercise.api.Models;
+using Microsoft.EntityFrameworkCore;
 using System.Security.Policy;
 
 namespace exercise.api.Repository
@@ -38,7 +39,7 @@ namespace exercise.api.Repository
         {
             using (var db = new EmployeeContext())
             {
-                return db.Employees.ToList();
+                return db.Employees.Include(s => s.Salary).Include(d => d.Department).ToList();
             }
             return null;
         }
@@ -65,8 +66,8 @@ namespace exercise.api.Repository
                     db.Employees.Attach(target);
                     target.name = employee.name;
                     target.jobName = employee.jobName;
-                    target.salaryGrade = employee.salaryGrade;
-                    target.department = employee.department;
+                    target.SalaryId = employee.SalaryId;
+                    target.DepartmentId = employee.DepartmentId;
                     db.SaveChanges();
                     return true;
 

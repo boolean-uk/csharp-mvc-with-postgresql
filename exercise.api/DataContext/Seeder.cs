@@ -10,15 +10,6 @@ namespace exercise.api.DataContext
         {
             using (var db = new EmployeeContext())
             {
-                if (!db.Employees.Any())
-                {
-                    db.Employees.Add(new Employee() { name = "Nigel", jobName = "Developer", salaryGrade = "A++", department = "Boolean" });
-                    db.Employees.Add(new Employee() { name = "Dave", jobName = "Developer", salaryGrade = "A++", department = "Boolean" });
-                    db.Employees.Add(new Employee() { name = "Bob", jobName = "Developer", salaryGrade = "B++", department = "Boolean" });
-                    db.SaveChanges();
-                }
-
-                db.SaveChanges();
 
                 if (!db.Salaries.Any())
                 {
@@ -28,13 +19,21 @@ namespace exercise.api.DataContext
                     db.SaveChanges();
                 }
 
-                db.SaveChanges();
+                //db.SaveChanges();
 
                 if (!db.Departments.Any())
                 {
                     db.Departments.Add(new Department() { name = "C#", location = "London" });
                     db.Departments.Add(new Department() { name = "Java", location = "Pitsburg" });
                     db.Departments.Add(new Department() { name = "React", location = "Bournemouth" });
+                    db.SaveChanges();
+                }
+
+                if (!db.Employees.Any())
+                {
+                    db.Employees.Add(new Employee() { name = "Nigel", jobName = "Developer", SalaryId = 1, DepartmentId = 1 });
+                    db.Employees.Add(new Employee() { name = "Dave", jobName = "Developer", SalaryId = 2, DepartmentId = 2 });
+                    db.Employees.Add(new Employee() { name = "Bob", jobName = "Developer", SalaryId = 3, DepartmentId = 3 });
                     db.SaveChanges();
                 }
 
