@@ -32,4 +32,6 @@ app.MapControllers();
 
 app.ConfigureEmployeeApi();
 
+app.Seed();
+
 app.Run();

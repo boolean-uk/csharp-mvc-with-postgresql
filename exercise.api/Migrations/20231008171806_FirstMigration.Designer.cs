@@ -11,8 +11,8 @@ using exercise.api.DataContext;
 namespace exercise.api.Migrations
 {
     [DbContext(typeof(EmployeeContext))]
-    [Migration("20231007150655_SecondMigration")]
-    partial class SecondMigration
+    [Migration("20231008171806_FirstMigration")]
+    partial class FirstMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
