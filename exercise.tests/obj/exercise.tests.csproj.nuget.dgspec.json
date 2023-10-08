@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\_BooleanCSharp2\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj": {}
+    "E:\\GitDirectories\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj": {}
   },
   "projects": {
-    "D:\\_BooleanCSharp2\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj": {
+    "E:\\GitDirectories\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\_BooleanCSharp2\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj",
+        "projectUniqueName": "E:\\GitDirectories\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj",
         "projectName": "exercise.tests",
-        "projectPath": "D:\\_BooleanCSharp2\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj",
-        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "D:\\_BooleanCSharp2\\csharp-mvc-with-postgresql\\exercise.tests\\obj\\",
+        "projectPath": "E:\\GitDirectories\\csharp-mvc-with-postgresql\\exercise.tests\\exercise.tests.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "E:\\GitDirectories\\csharp-mvc-with-postgresql\\exercise.tests\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -80,7 +77,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
